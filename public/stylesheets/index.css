@@ -1,0 +1,55 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+#main{
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    display: flex;
+}
+.left{
+    width: 60%;
+    height: 100%;
+    background-color: palegreen;
+}
+.right{
+    width: 40%;
+    height: 100%;
+    background-color: rgb(231, 89, 89);
+}
+.buttons{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2vmax;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    width: 20vmax;
+    height: 5vh;
+    background-color: darkcyan;
+}
+
+
+/* .right class css below */
+.multer_upload{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
