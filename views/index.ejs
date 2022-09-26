@@ -12,25 +12,47 @@
  
 </style>
 <body>
+
     <div id="main">
         <div class="left">
           <div style="position: absolute;max-width: 15vmax;max-height: 18vmax;background-color: yellow;" class="pic">
-            <img style="width: 100%;height: 100%;object-fit: contain;" id="testPic" src="" itemid=""  alt="aefgSgfe">
+            <!-- <img style="width: 100%;height: 100%;object-fit: contain;" id="testPic" src="../images/uploads/<%= images.img %> " itemid=""  alt="aefgSgfe"> -->
           </div>
 
           <div class="buttons">
-            <a href=""><button id="Mirror" class="btn"> Mirror </button></a>
-            <a href=""><button class="btn"> Greyscale </button></a>
-            <a href=""><button class="btn"> Invert </button></a>
-            <a href=""><button class="btn"> ok </button></a>
-            <a href=""><button class="btn"> Download</button></a>
+            <a id="Mirror"><button class="btn"> Mirror </button></a> 
+            <a id="greyScale"><button class="btn"> Greyscale </button></a>
+            <a id="invert"><button class="btn"> Invert </button></a>
+            <a id="blur"><button class="btn"> Blur </button></a> 
+              <h1>rotates</h1>
+              <a id="rotateby90"><button class="btn"> Rotate by 90 <sup>o</sup> </button></a>
+              <a id="rotate-90"><button class="btn"> Rotate by -90 <sup>o</sup> </button></a>
+              <a id="rotate180"><button class="btn"> Rotate by 180 <sup>o</sup> </button></a>
+              <a id="rotate270"><button class="btn"> Rotate by 270 <sup>o</sup> </button></a>
+            <a id="discard"><button class="btn"> Discard All Changes </button></a> 
+
+            <a id="download"><button class="btn"> Download</button></a>
           </div>
 
         </div>
         <div class="right">
           <div class="multer_upload">
-            <form id="uploadForm" method="post" enctype="multipart/form-data">
-              <img src="" id="frame" onchange="preview()" style="max-width: 15vmax;max-height: 15vmax;background-color: rgba(255, 255, 255, 0.911);position: absolute;top: 2%;" alt="">
+            <% if (images.length > 0) {%>
+              <h6><%=id%></h6>
+              <p><%=name%></p>
+              
+            <%} %> 
+            <form action="/upload" id="uploadForm" method="post" enctype="multipart/form-data">
+              <% if (images.length > 0) {%>
+                <% images.forEach(element => {%>
+  
+                  <img src="../images/uploads/<%= element.img %> " id="frame" style="max-width: 15vmax;max-height: 15vmax;background-color: rgba(255, 255, 255, 0.911);position: absolute;top: 2%;" lang="<%= element._id %> " alt="">
+                <%}); %> 
+                
+              <%}else{%>
+                <img src="../images/uploads/def.jpg " id="frame" style="max-width: 15vmax;max-height: 15vmax;background-color: rgba(255, 255, 255, 0.911);position: absolute;top: 2%;" alt="">
+                
+              <%} %> 
               <span id="spanone" style="min-width: 22vmax;min-height: 22vmax;background-color: rgba(255, 0, 0, 0.253);position: absolute;top: 17vmax;  ">Click to upload file</span>
              <input id="inputField" type="file" name="file" >
              <input type="submit" id="submitForm" role="form" style="position: relative;left: 5vmax;" value="upload">
@@ -42,7 +64,6 @@
         </div>
     </div>
 
-    
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../javascripts/index.js"></script>

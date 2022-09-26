@@ -7,56 +7,188 @@ spanone.addEventListener("click", function () {
 })
 
 
-inputField.addEventListener("change", function (e) {
-  e.preventDefault()
-  console.log(URL.createObjectURL(e.target.files[0]));
-  frame.src = URL.createObjectURL(e.target.files[0])
+//mirror logic
 
-})
-
-//image uploaded and now gonna show the uploaded image with the help of axios and src
-
-var uploadForm = document.getElementById("uploadForm")
-var submitForm = document.getElementById("submitForm")
-uploadForm.addEventListener("submit", async function (e) {
-  e.preventDefault()
-  var formData = new FormData(uploadForm)
-  console.log([...formData][0][1].name);
-  var ourFile = [...formData][0][1]
-  console.log(ourFile);
-
-  const res = await axios.post("/upload", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    }
-  })
-
-  console.log(res.data);
-
-  const indexPageRes = await axios.get(`/ok/${res.data._id}`)
-  
-  console.log(indexPageRes.data);
-
-  var testPic = document.getElementById("testPic")
-  frame.src = `${indexPageRes.data.img}`
-  testPic.src = `${indexPageRes.data.img}`
-  testPic.itemid = `${indexPageRes.data._id}`
-
-})
-
-//axios for Mirror
-
-var Mirror = document.getElementById("Mirror")
-Mirror.addEventListener("click", async function (e) {
-  e.preventDefault()
+var mirror = document.getElementById("Mirror")
+mirror.addEventListener("click" , async (e)=>{
+  // prompt("hey")
   console.log(e);
-  console.log(e.path[3].children[0].childNodes[1].itemid);
-  try {
-    const editedFile = await axios.get(`/mirror/${e.path[3].children[0].childNodes[1].itemid}`)
-    console.log(editedFile);
-    
-  } catch (error) {
-    res.json(error)
-  }
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  const resOfMirror = await axios.get(`/mirror/${e.path[4].children[1].children[0].children[0].firstChild.data}`)
+  console.log(resOfMirror);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/JIMP/mirror/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+
 
 })
+
+//greyScale logic
+
+var greyScale = document.getElementById("greyScale")
+greyScale.addEventListener("click" , async (e)=>{
+  // prompt("hey")
+  console.log(e);
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  const resOfGreyScale = await axios.get(`/greyScale/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
+  console.log(resOfGreyScale);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/JIMP/greyscale/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+
+
+})
+
+//invert logic
+
+var invert = document.getElementById("invert")
+invert.addEventListener("click" , async (e)=>{
+  // prompt("hey")
+  console.log(e);
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  const resOfInvert = await axios.get(`/invert/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
+  console.log(resOfInvert);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/JIMP/invert/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+
+
+})
+
+
+//blur logic
+
+var blur = document.getElementById("blur")
+blur.addEventListener("click" , async (e)=>{
+  // prompt("hey")
+  console.log(e);
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  const resOfblur = await axios.get(`/blur/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
+  console.log(resOfblur);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/JIMP/blur/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+
+
+})
+
+
+//rotate by 90deg logic
+
+var rotateby90 = document.getElementById("rotateby90")
+rotateby90.addEventListener("click" , async (e)=>{
+  // prompt("hey")
+  console.log(e);
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  const resOfrotateby90 = await axios.get(`/rotateby90/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
+  console.log(resOfrotateby90);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/JIMP/rotates/rotateby90/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+
+
+})
+
+
+//rotate by -90deg logic
+
+var rotate_90 = document.getElementById("rotate-90")
+rotate_90.addEventListener("click" , async (e)=>{
+  // prompt("hey")
+  console.log(e);
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  const resOfrotateby_90 = await axios.get(`/rotateby_90/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
+  console.log(resOfrotateby_90);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/JIMP/rotates/rotateby-90/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+
+
+})
+
+
+//rotate by 180deg logic
+
+var rotate180 = document.getElementById("rotate180")
+rotate180.addEventListener("click" , async (e)=>{
+  // prompt("hey")
+  console.log(e);
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  const resOfrotateby180 = await axios.get(`/rotateby180/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
+  console.log(resOfrotateby180);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/JIMP/rotates/rotateby180/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+
+
+})
+
+//rotate by 270deg logic
+
+var rotate270 = document.getElementById("rotate270")
+rotate270.addEventListener("click" , async (e)=>{
+  // prompt("hey")
+  console.log(e);
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  const resOfrotateby270 = await axios.get(`/rotateby270/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
+  console.log(resOfrotateby270);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/JIMP/rotates/rotateby270/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+  
+
+})
+
+//discard all logic
+
+var discard = document.getElementById("discard")
+discard.addEventListener("click" , async (e)=>{
+  // prompt("hey")
+  console.log(e);
+  console.log(e.path[4].children[1].children[0].children[0].firstChild.data); //id of uploaded image
+  console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  // const resOfrotateby270 = await axios.get(`/rotateby270/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
+  // console.log(resOfrotateby270);
+
+  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
+
+  frame.src = `../images/uploads/${e.path[4].children[1].children[0].children[1].firstChild.data}`
+  
+
+})
+
+
+// //download logic
+
+// var download = document.getElementById("download")
+// download.addEventListener("click" , async (e)=>{
+//   // prompt("hey")
+//   console.log(e);
+//   // console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+//   console.log(e.path[4].children[1].children[0].children[2].children[0].attributes[0].nodeValue); // ../value
+//   console.log(e.path[4].children[1].children[0].children[2].children[0].currentSrc); // whole src
+//   // const downImg = await axios.get(`/${e.path[4].children[1].children[0].children[2].children[0].currentSrc}`)
+//   const downImg = await axios.get(`${e.path[4].children[1].children[0].children[2].children[0].currentSrc}`)
+//   console.log(downImg);
+
+// })
+
+
+
+

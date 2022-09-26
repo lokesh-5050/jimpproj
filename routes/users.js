@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const mongoose = require("mongoose")
+mongoose.connect("mongodb://localhost/jimp2")
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const userPublicSchema = mongoose.Schema({
+  img:{
+    type:String,
+    default:"def.jpg"
+  }
+})
 
-module.exports = router;
+module.exports = mongoose.model("user" , userPublicSchema)
