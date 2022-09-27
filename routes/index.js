@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const userModel = require("./users")
 const multer = require("multer");
 var Jimp = require('jimp');
 const path = require("path");
@@ -16,45 +15,37 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({storage:storage})
+const upload = multer({
+  storage:storage
+ 
+
+})
 
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  const images = await userModel.find()
-  if(images.length > 0 ){
-    console.log(images[images.length - 1]._id  , "last element");
-    let idOfLastImage = images[images.length -1]._id
-    let nameOfLastImage = images[images.length -1].img
-    res.render('index' , { images , id:idOfLastImage , name:nameOfLastImage });
-  }else{
-    res.render('index' , {images})
-  }
+  
+  res.render('index')
+  
 
 });
 
 router.post("/upload" , upload.single("file"),  async function(req,res,next){
-  
-  const addingPicToUserModel = await userModel.create({
-    img:req.file.filename
-  })
-  console.log(addingPicToUserModel);
-
-  res.redirect("/")
+  var img = req.file.filename
+  console.log(img);
+  console.log(req.file.filename);
+  res.render('uploaded' , {img})
 
 
 })
 
-router.get("/mirror/:thatImgId" , async (req,res,next) =>{
-  var thatImage = await userModel.findById(req.params.thatImgId)
-  // console.log(thatImage.img);
-  var imageName = thatImage.img
-  // console.log(imageName);
+//mirror logic
+router.get("/mirror/:thatImgName" , async (req,res,next) =>{
+  var imageName = req.params.thatImgName
+  console.log(imageName);
   let newImage = await Jimp.read(`./public/images/uploads/${imageName}`)
-  await newImage.mirror(true , false , (err , data)=>{
+  await newImage.mirror(true , false , (err)=>{
     if(err) throw err
-    console.log(data , ",,.lokesh");
-    
   })
   const name = await newImage.writeAsync(`./public/images/JIMP/mirror/${imageName}`)
   res.json(name)

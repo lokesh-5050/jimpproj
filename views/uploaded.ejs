@@ -38,11 +38,11 @@
         <div class="right">
           <div class="multer_upload">
               <!-- <h6><%#id%></h6> -->
-              <!-- <p><%#name%></p> -->
+              <p><%=img%></p>
               
             <form action="/upload" id="uploadForm" method="post" enctype="multipart/form-data">
   
-                  <img src="" id="frame" style="max-width: 15vmax;max-height: 15vmax;background-color: rgba(255, 255, 255, 0.911);position: absolute;top: 2%;" alt="">
+                  <img src="../images/uploads/<%= img %>" id="frame" style="max-width: 15vmax;max-height: 15vmax;background-color: rgba(255, 255, 255, 0.911);position: absolute;top: 2%;" alt="">
                 
                 
               <span id="spanone" style="min-width: 22vmax;min-height: 22vmax;background-color: rgba(255, 0, 0, 0.253);position: absolute;top: 17vmax;  ">Click to upload file</span>
