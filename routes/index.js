@@ -5,7 +5,6 @@ var Jimp = require('jimp');
 const path = require("path");
 const { readFile } = require('fs');
 
-//bc kya kru cludiMul ya multer
 const storage = multer.diskStorage({
   destination:(req,file,cb) =>{
     cb(null , './public/images/uploads');
@@ -127,12 +126,7 @@ router.get("/rotateby270/:thatImgName" , async (req,res,next) =>{
 })
 
 
-// //download logic
-// router.get("/:srcOfThatImage" , async (req,res,next) =>{
-  
-//   res.download(req.params.srcOfThatImage)
-//   res.end();
-// })
+
 
 
 

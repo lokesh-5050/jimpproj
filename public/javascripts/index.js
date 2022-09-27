@@ -164,7 +164,6 @@ discard.addEventListener("click" , async (e)=>{
   // const resOfrotateby270 = await axios.get(`/rotateby270/${e.path[4].children[1].children[0].children[1].firstChild.data}`) //seding name
   // console.log(resOfrotateby270);
 
-  // console.log(`./public/images/JIMP/${e.path[4].children[1].children[0].children[1].firstChild.data}`);
 
   frame.src = `../images/uploads/${e.path[4].children[1].children[0].children[0].firstChild.data}`
   
@@ -172,20 +171,16 @@ discard.addEventListener("click" , async (e)=>{
 })
 
 
-// //download logic
+//download logic
 
-// var download = document.getElementById("download")
-// download.addEventListener("click" , async (e)=>{
-//   // prompt("hey")
-//   console.log(e);
-//   // console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
-//   console.log(e.path[4].children[1].children[0].children[2].children[0].attributes[0].nodeValue); // ../value
-//   console.log(e.path[4].children[1].children[0].children[2].children[0].currentSrc); // whole src
-//   // const downImg = await axios.get(`/${e.path[4].children[1].children[0].children[2].children[0].currentSrc}`)
-//   const downImg = await axios.get(`${e.path[4].children[1].children[0].children[2].children[0].currentSrc}`)
-//   console.log(downImg);
+var download = document.getElementById("download")
+download.addEventListener("click" , async (e)=>{
+  console.log(e);
+  // console.log(e.path[4].children[1].children[0].children[1].firstChild.data); // name of upaodwed image
+  console.log(e.path[3].children[1].children[0].children[1].children[0].currentSrc); // whole src
+  download.href = `${e.path[3].children[1].children[0].children[1].children[0].currentSrc}`
 
-// })
+})
 
 
 
